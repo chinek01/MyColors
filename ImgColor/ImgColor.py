@@ -118,7 +118,6 @@ class ImgColor:
         for item in self._top_10_hex_list:
             self._hex_frequency_top_10[item] = self._hex_frequency[item]
 
-        # print(self._hex_frequency_top_10)
         return self._hex_frequency_top_10
 
     def color_percent_all(self):
@@ -140,14 +139,8 @@ class ImgColor:
             else:
                 hex_frequency[item] = 1
 
-        # print(my_len)
-        # print(type(hex_frequency))
-        # print(hex_frequency)
-
         self._hex_frequency = {key: [value, round((value * 100) / my_len, 5)] for key, value in hex_frequency.items()}
 
-        # print(self._hex_frequency)
-        # print(self._hex_frequency['#A9A9A9'])
         return self._hex_frequency
 
 
