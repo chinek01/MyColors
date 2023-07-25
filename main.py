@@ -8,3 +8,37 @@ Author: MC
 
 """
 
+import os
+from flask import Flask, render_template, request
+from werkzeug.utils import secure_filename
+from ImgColor import ImgColor
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = '/upload/'
+
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        f = request.files['file']
+        filename = secure_filename(f.filename)
+
+        if len(filename) > 1:
+            fullpath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            f.save(fullpath)
+
+            color_class = ImgColor()
+            color_class.open_img_file(fullpath)
+
+            palette = color_class.color_percent_top_10()
+
+            # dodanie palet kolorów
+            return render_template('index.html')
+
+        return render_template('index.html')
+
