@@ -14,7 +14,7 @@ from werkzeug.utils import secure_filename
 from ImgColor import ImgColor
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = '/upload/'
+app.config['UPLOAD_FOLDER'] = './upload/'
 
 
 @app.route("/")
@@ -24,6 +24,7 @@ def home():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
+
     if request.method == 'POST':
         f = request.files['file']
         filename = secure_filename(f.filename)
@@ -42,3 +43,7 @@ def upload():
 
         return render_template('index.html')
 
+
+# some test
+if __name__ == '__main__':
+    app.run(debug=True)

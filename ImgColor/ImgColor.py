@@ -75,6 +75,7 @@ class ImgColor:
         self._top_10_hex_list = []
         self._hex_frequency = {}
         self._hex_frequency_top_10 = {}
+        self._hex_frequency_top_10_fit = {}
 
     def open_img_file(self,
                       path):
@@ -120,6 +121,20 @@ class ImgColor:
 
         return self._hex_frequency_top_10
 
+    def color_percent_top_10_fit(self):
+        """
+        fit data
+        :return:
+        """
+
+        self.color_percent_top_10()
+
+        for key, value in self._hex_frequency_top_10.items():
+            c, p = value
+            self._hex_frequency_top_10_fit[key] = p
+
+        return self._hex_frequency_top_10_fit
+
     def color_percent_all(self):
         """
         calculate color percent in image for all values
@@ -151,3 +166,4 @@ if __name__ == '__main__':
     x.open_img_file('example_img.jpg')
     # x.color_percent_all()
     print(x.color_percent_top_10())
+    print(x.color_percent_top_10_fit())

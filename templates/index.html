@@ -3,8 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Top colors</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
 </head>
 <body>
+
+    <h1>Image color palette generator - top 10</h1>
+    <h3>Upload an image to generate a colour palette</h3>
+
+    <form action="/upload" enctype="multipart/form-data" method="post">
+        <div class="file-button">
+            <label for="file">
+                Upload image
+                <input type="file" accept="image/jpeg, image/png" id="file" name="file">
+            </label>
+        </div>
+
+        <br>
+        <input type="submit" value="Submit" class="submit-button">
+    </form>
+
+    {% if hex_success == True %}
+
+        <p>The top 10 colors in your image:</p>
+
+        {% for key, value in hex_palette.items() %}
+            {%  %}
+
+            <div class="color-card">
+                <div class="show-color">{{ hex.key() }}</div>
+                <div class="show-hex-info"></div>
+                <div class="show-percent-info"></div>
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
 
 </body>
 </html>
