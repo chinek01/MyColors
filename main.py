@@ -36,10 +36,12 @@ def upload():
             color_class = ImgColor()
             color_class.open_img_file(fullpath)
 
-            palette = color_class.color_percent_top_10()
+            palette = color_class.color_percent_top_10_fit()
 
             # dodanie palet kolorów
-            return render_template('index.html')
+            return render_template('index.html',
+                                   hex_success=True,
+                                   hex_palette=palette)
 
         return render_template('index.html')
 

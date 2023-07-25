@@ -26,14 +26,14 @@
 
         <p>The top 10 colors in your image:</p>
 
-        {% for key, value in hex_palette.items() %}
-            {%  %}
+        {% for hex, value in hex_palette.items() %}
 
             <div class="color-card">
-                <div class="show-color">{{ hex.key() }}</div>
-                <div class="show-hex-info"></div>
-                <div class="show-percent-info"></div>
+                <div class="show-color" style="background-color: {{ hex }}"></div>
+                <div class="show-hex-info">{{ hex }}</div>
+                <div class="show-percent-info">{{ value }}</div>
             </div>
+            <br>
 
         {% endfor %}
 
